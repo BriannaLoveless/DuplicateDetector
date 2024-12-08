@@ -1,5 +1,5 @@
 # Duplicate Detector
-Author: Brianna Loveless
+Author: Brianna Loveless  
 This application is used to detect duplicate advertiser names from a list of advertisers.
 
 ## How to Run

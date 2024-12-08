@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^3.1.7",
     "string-similarity-js": "^2.1.4"
   }
 }

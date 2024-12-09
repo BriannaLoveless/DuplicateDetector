@@ -29,31 +29,31 @@ function computeSimilarities(currentAdvertiser, allAdvertisers, likelyThreshold=
 }
 
 /**
- * Outputs the results of duplicate detection to the console.
+ * Outputs the results of duplicate detection to the file system.
  */
-function printResults(similarityResults) {
-    console.log()
+function outputResults(similarityResults) {
+    console.log("\nOutputting results to files")
+    const likelyResultsFile = fs.createWriteStream('./output/likelyResults.txt');
+    const possibleResultsFile = fs.createWriteStream('./output/possibleResults.txt');
+
     for (const companyName in similarityResults) {
         const likelyMatches = similarityResults[companyName].likelyMatches.map((m) => m.name);
         const possibleMatches = similarityResults[companyName].possibleMatches.map((m) => m.name);
 
-        if(likelyMatches.length > 0 || possibleMatches.length > 0) { 
-          console.log(companyName); 
         if (likelyMatches.length > 0) {
-            console.log(`    Likely Duplicate: ${likelyMatches.join(', ')}`);
+            likelyResultsFile.write(`${companyName.padEnd(40)}: ${likelyMatches.join(', ')}\n`);
         }
         if (possibleMatches.length > 0) {
-            console.log(`    Possible Duplicate: ${possibleMatches.join(', ')}`);
+            possibleResultsFile.write(`${companyName.padEnd(40)}: ${possibleMatches.join(', ')}\n`);
         }
-        console.log();
-      }
     }
+    likelyResultsFile.end()
+    possibleResultsFile.end()
 }
 
 /** Program Entrypoint */
 function main() {
   console.log("Note: This may take several minutes to run based on input size")
-  console.log()
   // 1. Compute Similarities for all advertisers
   const similarityResults = {}
   let computationProgress = -1
@@ -70,7 +70,8 @@ function main() {
   }
 
   // 2. Output Results
-  printResults(similarityResults);
+  outputResults(similarityResults);
+  console.log("Done")
 }
 
 main()

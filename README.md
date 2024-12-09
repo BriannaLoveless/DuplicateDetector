@@ -1,6 +1,7 @@
 # Duplicate Detector
 Author: Brianna Loveless  
 This application is used to detect duplicate advertiser names from a list of advertisers.
+Results are output to the file system.
 
 ## How to Run
 1. Install dependencies: `npm install`
@@ -20,5 +21,4 @@ Note: Application may take several minutes to complete due to input size.
 1. Multithreading using Javascript Service Workers would reduce the overall time cost of the implementation.
 2. Preprocessing the comparison list with a cheaper algorithm may result in some time savings.
 3. Using a machine learning clustering approach may yield more accurate results and time savings on large datasets. This approach was not implemented due to assessment time constraints.
-4. Writing the output to a file could improve usability by other applications.
-5. Sorting the output by similarity score sould improve usefullness.
+4. Sorting the output by similarity score sould improve usefullness.
